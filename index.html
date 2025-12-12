@@ -1,35 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="login-card">
-        <h2>Login</h2>
+<div class="background">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
 
-        <div class="input-box">
-            <input type="email" id="loginEmail" required>
-            <label>Email</label>
-        </div>
+<div class="login-card">
+  <h2>Welcome Back</h2>
 
-        <div class="input-box">
-            <input type="password" id="loginPassword" required>
-            <label>Password</label>
-        </div>
+  <div class="input-box">
+    <input type="email" id="loginEmail" required>
+    <label>Email</label>
+  </div>
 
-        <button onclick="login()">Login</button>
+  <div class="input-box">
+    <input type="password" id="loginPassword" required>
+    <label>Password</label>
+  </div>
 
-        <p style="margin-top:15px;color:white;text-align:center;">
-            Don’t have an account? <a href="signup.html" style="color:#00eaff;">Sign Up</a>
-        </p>
-    </div>
+  <button onclick="login()">Login</button>
 
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js"></script>
-    <script src="firebase.js"></script>
+  <p>Don’t have an account? <a href="signup.html">Sign Up</a></p>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js"></script>
+<script src="firebase.js"></script>
+
+<script>
+function login() {
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      if (!userCredential.user.emailVerified) {
+        alert("Please verify your email first!");
+        return;
+      }
+      window.location.href = "home.html"; // Redirect to home
+    })
+    .catch(error => {
+      alert(error.message);
+    });
+}
+</script>
+
 </body>
 </html>
