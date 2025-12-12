@@ -1,38 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="login-card">
-        <h2>Create Account</h2>
+<div class="background">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
 
-        <div class="input-box">
-            <input type="email" id="signupEmail" required>
-            <label>Email</label>
-        </div>
+<div class="login-card">
+  <h2>Create Account</h2>
 
-        <div class="input-box">
-            <input type="password" id="signupPassword" required>
-            <label>Password</label>
-        </div>
+  <div class="input-box">
+    <input type="email" id="signupEmail" required>
+    <label>Email</label>
+  </div>
 
-        <button onclick="signup()">Sign Up</button>
+  <div class="input-box">
+    <input type="password" id="signupPassword" required>
+    <label>Password</label>
+  </div>
 
-        <p style="margin-top:15px;color:white;text-align:center;">
-            Already have an account? <a href="login.html" style="color:#00eaff;">Login</a>
-        </p>
-    </div>
+  <button onclick="signup()">Sign Up</button>
 
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js"></script>
-    <script src="firebase.js"></script>
-auth.currentUser.sendEmailVerification();
-alert("Verification email sent!");
+  <p>Already have an account? <a href="index.html">Login</a></p>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js"></script>
+<script src="firebase.js"></script>
+
+<script>
+function signup() {
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
+
+  // Password must have uppercase, letters, numbers, min 6 chars
+  const regex = /^(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
+  if (!regex.test(password)) {
+    alert("Password must be at least 6 characters, contain a number and an uppercase letter.");
+    return;
+  }
+
+  auth.createUserWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      userCredential.user.sendEmailVerification();
+      alert("Account created! Verification email sent.");
+      window.location.href = "home.html"; // Redirect after signup
+    })
+    .catch(error => {
+      alert(error.message);
+    });
+}
+</script>
 
 </body>
 </html>
