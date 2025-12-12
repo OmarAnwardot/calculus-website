@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="background">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+</div>
+
+<div class="dashboard-container">
+
+    <h1 class="dashboard-title">Your Dashboard</h1>
+
+    <div class="dashboard-card">
+
+        <img id="dashPfp" class="dashboard-pfp" src="images/default-pfp.png">
+
+        <h2 id="dashEmail">Loading...</h2>
+
+        <p id="verifyStatus" class="verify-status">Checking email verification...</p>
+
+        <button onclick="sendVerification()" class="dash-btn">Send Verification Email</button>
+
+        <label class="upload-btn">
+            Upload Profile Picture
+            <input type="file" id="pfpInput" accept="image/*" hidden onchange="uploadPfp(event)">
+        </label>
+
+        <button onclick="goHome()" class="dash-btn">Go to Calculator</button>
+
+        <button onclick="logout()" class="logout-btn">Logout</button>
+
+    </div>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-storage.js"></script>
+
+<script src="firebase.js"></script>
+
+</body>
+</html>

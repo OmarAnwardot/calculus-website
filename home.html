@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+
+<div class="background">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+</div>
+
+<header class="topbar">
+    <div class="logo">CALCU<span>LAB</span></div>
+
+    <div class="user-area">
+        <img id="userPfp" class="user-pfp" src="images/default-pfp.png">
+        <button onclick="logout()" class="logout-btn">Logout</button>
+    </div>
+</header>
+
+<section class="hero">
+    <h1 class="title">Your Personal <span>Calculus Engine</span></h1>
+    <p class="subtitle">Derivatives • Integrals • Limits • Graphing</p>
+
+    <div class="calc-box">
+        <input type="text" id="expression" placeholder="e.g. derivative of x^2" />
+        <button onclick="calculate()">Compute</button>
+    </div>
+
+    <p class="result" id="result"></p>
+</section>
+
+<section class="scientists">
+    <h2>Great Minds of Calculus</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Isaac Newton</h3>
+            <p>Co-inventor of Calculus • Motion & Forces</p>
+        </div>
+
+        <div class="card">
+            <h3>Gottfried Leibniz</h3>
+            <p>Inventor of Integral Notation • Pioneer of Infinitesimals</p>
+        </div>
+
+        <div class="card">
+            <h3>Lagrange</h3>
+            <p>Father of Analytical Mechanics</p>
+        </div>
+
+    </div>
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js"></script>
+<script src="firebase.js"></script>
+<script src="calculator.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjs@11/lib/browser/math.js"></script>
+
+</body>
+</html>
